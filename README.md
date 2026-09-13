@@ -1,159 +1,164 @@
 <!--
 ##########################################
 #           TikTok Downloader            #
-#           Made by Jettcodey            #
+#           Made by Jettcodey             #
 #                © 2024                  #
 #           DO NOT REMOVE THIS           #
 ##########################################
 -->
-# TikTok Downloader
-<!-- # ⚠ THE APPLICATION ISN'T WORKING RIGHT NOW DUE TO RECENT TIKTOK API UPDATES ⚠ -->
 
-<!-- # ⚠ The Update Server is currently down for Maintenance. I´m working hard to bring it back online. ⚠ -->
+# TikTok Keyword Downloader
 
-<!-- > [!NOTE]
-> Some features of the application are not always working 100% right now due to changes in the TikTok API. -->
+Fork CLI untuk Windows yang mencari post TikTok berdasarkan keyword, lalu mengunduh video atau foto dari hasil pencarian.
 
-<!-- > [!NOTE]
-> The application is currently undergoing refactoring and a small rewrite. -->
+Fork ini mengganti flow WinForms dari proyek upstream dengan prompt terminal yang lebih singkat:
 
-> [!NOTE] 
-> As of [Release v1.3.9](https://github.com/Jettcodey/TikTok-Downloader/releases/tag/Release-1.3.9), this project is not being actively maintained.\
-While I **may** answer questions, updates of any kind (new features, bug fixes, etc.) will not be made until I return to the project.
+1. Masukkan keyword.
+2. Pilih Video atau Foto.
+3. Tentukan jumlah post.
+4. Selesaikan CAPTCHA atau login di browser jika TikTok memintanya.
+5. Tunggu sampai file tersimpan di folder `downloads`.
 
-<!-- TABLE OF CONTENTS -->
-<summary>Table of Contents</summary>
- <ol>
-   <li><a href="#-about-the-project">About The Project</a></li>
-   <li><a href="#-features">Features</a></li>
-   <li><a href="#%EF%B8%8F-installation">Installation</a></li>
-   <li><a href="#-usage">Usage</a></li>
-   <li><a href="#-contribute">Contribute</a></li>
-   <li><a href="#-report-a-bug--request-a-feature">Report a Bug/Request a Feature</a></li>
- </ol>
+## Download
 
-### Built With
-C# and Microsoft Playwright
+Unduh paket Windows x64 dari halaman [Releases](https://github.com/thoriq1520/TikTok-Downloader/releases/latest). Ekstrak ZIP, lalu jalankan `TikTok Downloader.bat`.
 
-<img src="https://github.com/Jettcodey/TikTok-Downloader/assets/163922510/aca578ae-4c24-490f-96f2-4c19a16fe9e6" width="48" height="48">
-<img src="https://github.com/Jettcodey/TikTok-Downloader/assets/163922510/e36d2e7e-689f-4927-aadb-42b8a7d1de2d" width="48" height="48">
+Paket release bersifat self-contained dan sudah membawa runtime .NET yang dibutuhkan aplikasi.
 
-<!--![csharpIcon](https://github.com/Jettcodey/TikTok-Downloader/assets/163922510/aca578ae-4c24-490f-96f2-4c19a16fe9e6)
-![Playwright](https://github.com/Jettcodey/TikTok-Downloader/assets/163922510/e36d2e7e-689f-4927-aadb-42b8a7d1de2d)-->
+## Fitur
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+- Mencari post TikTok berdasarkan keyword.
+- Memilih hasil berupa video atau foto.
+- Mengunduh 10 post jika jumlah dikosongkan.
+- Menerima jumlah 1 sampai 500 post.
+- Membuka Chrome, Edge, atau Brave untuk mengambil hasil pencarian.
+- Menyimpan nama file berdasarkan caption.
+- Memberi nomor urut pada setiap gambar dalam post foto.
+- Menghentikan proses dengan `Ctrl+C`.
 
-<!-- ABOUT THE PROJECT -->
-## 📁 About The Project
+Jumlah yang dimasukkan dihitung per post. Satu post foto dapat menghasilkan beberapa file gambar.
 
-**TikTok Downloader** is a Simple application that allows you to:
+## Kebutuhan
 
-- **Download individual Video or Image Posts**
-- **Download Videos in HD Quality**
-- **Mass Download Content** using Links from a Text file or by Username
+- Windows 10 atau versi lebih baru, x64.
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) untuk build.
+- Google Chrome, Microsoft Edge, atau Brave.
+- Koneksi internet.
 
-### 💾 App Information
-- **Install Location**: TikTok Downloader will be Installed at `C:\Program Files\Jettcodey\TikTok Downloader\TikTok Downloader`
-- **Default Location**: Downloads are saved in a folder on your desktop named `TikTokDownloads\{@Username}\`, organized into **Videos**, **Images**, and **Avatars**.
-- **Settings File**: Configuration is stored in the user's Documents folder at `Jettcodey\TikTok Downloader\appsettings.xml`.
+## Build
 
-### ❓ Questions?  
-If you have any questions, feel free to [open an issue](https://github.com/Jettcodey/TikTok-Downloader/issues) or reach out to me on Discord: **`jettcodey`**.  
-Please note that it may take me 1-2 days to respond—I'm just one person with a life outside of coding.
+Clone fork ini:
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+```powershell
+git clone https://github.com/thoriq1520/TikTok-Downloader.git
+cd TikTok-Downloader
+```
 
-<!-- Features -->
-## 🚀 Features
+Build konfigurasi Release:
 
-- ✔ **Download Single Video & Images**
-- ✔ **Download Videos With or Without Watermark** **\***
-- ✔ **Download Images Without Watermark**
-- ✔ **Download Videos & Images from Links in a Text file**
-- ✔ **Download Videos in HD Quality** (Third-Party API)
-- ✔ **Download Profile Avatars**
-- ✔ **Load & Download all Videos & Images from a User**
-- ✔ **Mobile Links Support** ('vm.tiktok.com')
-- ✔ **System Default Browser Support**
-- ✔ **Built-in App-Updater**
+```powershell
+dotnet build ".\src\TikTok Downloader.csproj" -c Release
+```
 
-### 🌐 **Multi-browser support**:
-  - ✔ **Google Chrome**
-  - ✔ **Microsoft Edge**
-  - ✔ **Chromium**
-  - ✔ **Brave**
-  - ✔ **Mozilla Firefox** **\*\***
+Hasil build berada di:
 
-**\*** Downloading Videos With a Watermark is **not** working 100% of the time due to changes in the TikTok API.
+```text
+src\bin\Release\net8.0-windows10.0.17763.0\
+```
 
-**\*\*** Firefox support is only available using the Microsoft Playwright Firefox build ([More info](https://playwright.dev/dotnet/docs/browsers#firefox)).
+Folder tersebut berisi executable .NET dan launcher `TikTok Downloader.bat`.
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+## Menjalankan aplikasi
 
-<!-- Installation -->
-## 🛠️ Installation
+Cara termudah adalah menjalankan BAT dari folder source:
 
-**Download the Latest Setup File**  
-   Get the latest version of TikTok Downloader from the [Releases page](https://github.com/Jettcodey/TikTok-Downloader/releases/latest).
+```powershell
+& ".\src\TikTok Downloader.bat"
+```
 
-**Install .NET 8.0 Desktop Runtime (if needed)**  
-   If the installer fails, you may need to install the [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) manually.
+Launcher akan mencari build Release. Jika EXE belum tersedia, launcher menjalankan build terlebih dahulu.
 
->.NET 8.0 Desktop Runtime is required for TikTok Downloader to run.
+Kamu juga dapat menjalankan launcher langsung dari folder hasil build:
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+```powershell
+& ".\src\bin\Release\net8.0-windows10.0.17763.0\TikTok Downloader.bat"
+```
 
-<!-- Usage -->
-## 📖 Usage
+Untuk melihat bantuan:
 
-After installing TikTok Downloader, open the application and complete the First-Time Setup. You will then have the following options:
+```powershell
+& ".\src\TikTok Downloader.bat" --help
+```
 
-- **Single Video/Image Download**
-- **Mass Download by Username**
-- **Mass Download from Text File Links**
-- **HD Download Video/Image**
-- **HD Download From Text File Links**
-- **HD Download By Username**
+Aplikasi akan meminta input berikut:
 
-### 🛠️ How to Use Each Option:
+```text
+Keyword pencarian: kucing
+Pilih media [1] Video  [2] Foto: 1
+Jumlah post [10]: 5
+```
 
-#### 1. Single Video/Image Download
-- Select this option, copy & paste the TikTok link* into the input field, and click **Download**.
+Browser terbuka selama pencarian. Jika TikTok menampilkan CAPTCHA atau halaman login, selesaikan di browser tersebut. Aplikasi akan melanjutkan pencarian secara otomatis.
 
-#### 2. Mass Download by Username
-- Choose this option, and copy & paste the TikTok profile link** or username into the text field.  
-- Click **Download**, and your default browser will open. 
-- Solve a simple puzzle to verify you're human, and accept/deny cookies (these will be deleted post-download). 
-- When prompted with a Login Popup, select **"Continue as Guest"**. 
-- The browser will scroll through the profile, saving links to a text file (`Username_combined_links.txt`) in the default storage location. 
-- The downloader will then retrieve all video/image posts from the saved links and begin Downloading.
+## Lokasi dan nama file
 
-#### 3. Mass Download from Text File Links
-- Create a `.txt` file with each TikTok link* on a new line. 
-- Select the **"Browse"** button to locate and choose your text file. 
-- Click **Download** to start the process.
+File disimpan relatif terhadap lokasi launcher:
 
-#### 4. The HD Variants
-The HD Variants are the Same but download **Videos** and **Images** (if Possible) in HD quality.
+```text
+downloads\
+└── <keyword>\
+    ├── videos\
+    │   └── <caption>.mp4
+    └── photos\
+        ├── <caption>_01.jpg
+        └── <caption>_02.jpg
+```
 
-\* TikTok Links format: `https://www.tiktok.com/@user/video|photo/123456789` or `https://vm|vt.tiktok.com/a1b2c3d4`.  
-**TikTok Profile Links format: `https://www.tiktok.com/@user`.
+Karakter yang tidak valid untuk nama file Windows dihapus dari caption. Jika nama yang sama sudah ada, aplikasi menambahkan nomor urut agar file lama tidak tertimpa.
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+## Cara kerja
 
-<!-- Contribute -->
-## 🤝 Contribute
+[Microsoft Playwright](https://playwright.dev/dotnet/) membuka halaman pencarian TikTok dan mengumpulkan tautan post sesuai tipe media. Aplikasi meminta metadata serta URL media dari TikWM, lalu mengunduh file dengan `HttpClient`.
 
-We welcome contributions from everyone! If you’re interested in helping improve TikTok Downloader, feel free to get involved.
+Untuk video, aplikasi memilih URL HD jika tersedia. Jika tidak tersedia, aplikasi memakai URL video lain yang diberikan API.
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+## Batasan
 
-<!-- Report a bug -->
-## 🐞 Report a Bug / Request a Feature
+- Struktur halaman TikTok dapat berubah dan membuat pencarian berhenti bekerja.
+- TikTok dapat meminta CAPTCHA atau login.
+- Proses download bergantung pada layanan TikWM.
+- Post yang dihapus, privat, dibatasi wilayah, atau tidak tersedia dapat dilewati.
+- Target download dapat tidak tercapai jika hasil pencarian atau API tidak menyediakan cukup post.
 
-Have you encountered a bug or have a feature in mind? Check out the [open issues](https://github.com/Jettcodey/TikTok-Downloader/issues) for a complete list of proposed features and known issues.
+Gunakan aplikasi ini hanya untuk konten yang boleh kamu unduh. Patuhi hak cipta, privasi kreator, dan ketentuan layanan platform.
 
-### **Important:**  
-Please report bugs and issues in **English**. Submissions in other languages may be ignored and closed.
+## Pengembangan
 
-<p align="right"><a href="#tiktok-downloader">Back to top</a></p>
+Menjalankan langsung dari source:
+
+```powershell
+dotnet run --project ".\src\TikTok Downloader.csproj"
+```
+
+Build harus selesai tanpa error atau warning:
+
+```powershell
+dotnet build ".\src\TikTok Downloader.csproj" -c Release
+```
+
+Source flow CLI berada di:
+
+- `src/Program.cs`
+- `src/KeywordDownloader.cs`
+- `src/TikTok Downloader.bat`
+
+## Repository
+
+- Fork aktif: [thoriq1520/TikTok-Downloader](https://github.com/thoriq1520/TikTok-Downloader)
+- Proyek upstream: [Jettcodey/TikTok-Downloader](https://github.com/Jettcodey/TikTok-Downloader)
+
+Perubahan pada fork ini mempertahankan kredit dan lisensi proyek asli.
+
+## Lisensi
+
+Proyek memakai [MIT License](LICENSE.txt). Hak cipta proyek asli tetap milik Jettcodey.
