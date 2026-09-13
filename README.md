@@ -9,6 +9,8 @@
 
 # TikTok Keyword Downloader
 
+Bahasa Indonesia | [English](README.en.md)
+
 Fork CLI untuk Windows yang mencari post TikTok berdasarkan keyword, lalu mengunduh video atau foto dari hasil pencarian.
 
 Fork ini mengganti flow WinForms dari proyek upstream dengan prompt terminal yang lebih singkat:
